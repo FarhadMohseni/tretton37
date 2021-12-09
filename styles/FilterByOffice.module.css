@@ -1,0 +1,52 @@
+.header_filter_office_select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: inherit;
+  color: var(--text-gray);
+  font-weight: lighter;
+  line-height: inherit;
+  outline: none;
+}
+.header_filter_office {
+  display: grid;
+  grid-template-areas: "select";
+  width: 100%;
+  min-width: 6rem;
+  max-width: 10rem;
+  justify-self: start;
+  border-radius: 2em;
+  padding: 0.25em 0.5em;
+
+  font-weight: lighter;
+  color: white;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: var(--dark-green-alpha);
+  background-image: var(--dark-green-alpha);
+  align-items: center;
+}
+
+.header_filter_office::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: var(--dark-green);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  justify-self: end;
+}
+
+.header_filter_office_select,
+.header_filter_office:after {
+  grid-area: select;
+}
+
+/* Remove arrow for IE */
+.header_filter_office_select::-ms-expand {
+  display: none;
+}
