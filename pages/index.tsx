@@ -53,6 +53,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       notFound: true,
     };
   }
+  data = data.filter((i: Item) => i.published);
   // Pass data to the page via props
   return { props: { data } };
 };

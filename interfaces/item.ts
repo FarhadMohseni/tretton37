@@ -5,4 +5,5 @@ export default interface Item {
   linkedIn: string | null;
   github: string | null;
   twitter: string | null;
+  published: Boolean;
 }
