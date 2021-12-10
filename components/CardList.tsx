@@ -8,12 +8,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 interface Props {
   items: Array<Item>;
   nameFilter: string;
+  officeFilter: string;
 }
 
-function CardList({ items, nameFilter }: Props) {
+function CardList({ items, nameFilter, officeFilter }: Props) {
   //Filter null images from the items
 
-  const [displayedItems, setDisplayedItems] = useState(items.slice(0, 9));
+  const [displayedItems, setDisplayedItems] = useState(items.slice(0, 10));
   const getMoreItems = () => {
     var newItems = items.slice(
       displayedItems.length,
@@ -29,12 +30,17 @@ function CardList({ items, nameFilter }: Props) {
       next={getMoreItems}
       hasMore={hasMore}
       loader={<p> </p>}
-      endMessage={<h4>Yay! You've met all of our collegues</h4>}>
+      endMessage={<p> </p>}>
       <div>
         <section className={styles.cards}>
           {displayedItems
             .filter((item) =>
               nameFilter === "" ? item.name : item.name.includes(nameFilter)
+            )
+            .filter((item) =>
+              officeFilter === ""
+                ? item.name
+                : item.office.includes(officeFilter)
             )
             .map((item: Item) => (
               <CardItem item={item} />

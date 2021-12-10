@@ -10,7 +10,10 @@ import axios from "axios";
 
 const Home: NextPage = (props: any) => {
   var items: [Item] = props.data;
+  var offices = [...new Set(items.map((item) => item.office))];
+
   const [nameFilter, setNameFilter] = useState("");
+  const [officeFilter, setOfficeFilter] = useState("");
   return (
     <div className={styles.container}>
       <Head>
@@ -24,10 +27,17 @@ const Home: NextPage = (props: any) => {
         </div>
         <div className={styles.header_filter}>
           <FilterByName getFilter={(filter: string) => setNameFilter(filter)} />
-          <FilterByOffice />
+          <FilterByOffice
+            getFilter={(filter: string) => setOfficeFilter(filter)}
+            offices={Array.from(offices)}
+          />
         </div>
       </section>
-      <CardList nameFilter={nameFilter} items={items} />
+      <CardList
+        nameFilter={nameFilter}
+        officeFilter={officeFilter}
+        items={items}
+      />
     </div>
   );
 };

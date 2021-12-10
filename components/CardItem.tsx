@@ -36,7 +36,10 @@ function CardItem({ item }: Props) {
     <div className={styles.item}>
       <style>{dom.css()}</style>
       <div className={styles.card}>
-        <img src={item.imagePortraitUrl} className="card_image" />
+        <img
+          src={item.imagePortraitUrl ? item.imagePortraitUrl : "fallBack.png"}
+          className="card_image"
+        />
         <div className={styles.card_overlay}>
           {twitter}
           {linkedIn}
