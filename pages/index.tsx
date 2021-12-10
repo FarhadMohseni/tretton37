@@ -1,14 +1,16 @@
 import type { GetServerSideProps, NextPage } from "next";
+import { useState, useContext } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import FilterByName from "../components/FilterByName";
 import FilterByOffice from "../components/FilterByOffice";
 import CardList from "../components/CardList";
+import Item from "../interfaces/item";
 import axios from "axios";
 
 const Home: NextPage = (props: any) => {
-  console.log(props.data);
+  var items: [Item] = props.data;
+  const [nameFilter, setNameFilter] = useState("");
   return (
     <div className={styles.container}>
       <Head>
@@ -21,11 +23,11 @@ const Home: NextPage = (props: any) => {
           <p>The fellowship of the tretton37</p>
         </div>
         <div className={styles.header_filter}>
-          <FilterByName />
+          <FilterByName getFilter={(filter: string) => setNameFilter(filter)} />
           <FilterByOffice />
         </div>
       </section>
-      <CardList />
+      <CardList nameFilter={nameFilter} items={items} />
     </div>
   );
 };
@@ -36,6 +38,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
   });
   var data = res.data;
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
   // Pass data to the page via props
   return { props: { data } };
 };
