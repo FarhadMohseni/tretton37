@@ -36,8 +36,8 @@
   transition: box-shadow 0.3s ease-in-out;
   transition: opacity 0.5s ease-in 100ms;
 }
-.card_overlay i {
-  font-size: 2rem;
+.card_overlay_icon {
+  font-size: 2rem !important;
   color: white;
   cursor: pointer;
   margin: 0.5rem 0.2rem;
