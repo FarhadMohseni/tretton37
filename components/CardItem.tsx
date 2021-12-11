@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/CardItem.module.css";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
@@ -7,9 +7,11 @@ import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons/faTwitterSqu
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faGithubSquare } from "@fortawesome/free-brands-svg-icons/faGithubSquare";
 import Item from "../interfaces/item";
+import styles from "../styles/CardItem.module.css";
 interface Props {
   item: Item;
 }
+
 function CardItem({ item }: Props) {
   let twitter = item.twitter ? (
     <a target="_blank" href={`https://twitter.com/${item.twitter}`}>
@@ -19,11 +21,13 @@ function CardItem({ item }: Props) {
       />
     </a>
   ) : null;
+
   let linkedIn = item.linkedIn ? (
     <a target="_blank" href={`https://linkedIn.com${item.linkedIn}`}>
       <FontAwesomeIcon icon={faLinkedin} className={styles.card_overlay_icon} />
     </a>
   ) : null;
+
   let github = item.github ? (
     <a target="_blank" href={`https://github.com/${item.github}`}>
       <FontAwesomeIcon
@@ -32,8 +36,9 @@ function CardItem({ item }: Props) {
       />
     </a>
   ) : null;
+
   return (
-    <div className={styles.item}>
+    <div data-cy="dataItem" className={styles.item}>
       <style>{dom.css()}</style>
       <div className={styles.card}>
         <img
@@ -47,8 +52,12 @@ function CardItem({ item }: Props) {
         </div>
       </div>
       <div className={styles.item_text_container}>
-        <span className={styles.name}>{item.name}</span>
-        <span className={styles.office}>{item.office}</span>
+        <span data-cy="dataName" className={styles.name}>
+          {item.name}
+        </span>
+        <span data-cy="dataOffice" className={styles.office}>
+          {item.office}
+        </span>
       </div>
     </div>
   );

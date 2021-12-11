@@ -14,6 +14,7 @@ function FilterByOffice({ offices, getFilter }: Props) {
   return (
     <div className={styles.header_filter_office}>
       <select
+        data-cy="selectOffice"
         onChange={(e) => onChange(e.currentTarget.value)}
         className={styles.header_filter_office_select}>
         <option value="">All</option>

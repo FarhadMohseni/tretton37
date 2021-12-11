@@ -1,10 +1,9 @@
 import React, { useState, useContext } from "react";
-
+import InfiniteScroll from "react-infinite-scroll-component";
 import styles from "../styles/CardList.module.css";
 import CardItem from "../components/CardItem";
 import Item from "../interfaces/item";
 
-import InfiniteScroll from "react-infinite-scroll-component";
 interface Props {
   items: Array<Item>;
   nameFilter: string;
@@ -12,16 +11,16 @@ interface Props {
 }
 
 function CardList({ items, nameFilter, officeFilter }: Props) {
-  //Filter null images from the items
-
   const [displayedItems, setDisplayedItems] = useState(items.slice(0, 10));
+
   const getMoreItems = () => {
     var newItems = items.slice(
       displayedItems.length,
-      displayedItems.length + 9
+      displayedItems.length + 10
     );
     setDisplayedItems((items) => [...items, ...newItems]);
   };
+
   const hasMore = displayedItems.length < items.length;
 
   return (
@@ -32,7 +31,7 @@ function CardList({ items, nameFilter, officeFilter }: Props) {
       loader={<p> </p>}
       endMessage={<p> </p>}>
       <div>
-        <section className={styles.cards}>
+        <section data-cy="items" className={styles.cards}>
           {displayedItems
             .filter((item) =>
               nameFilter === "" ? item.name : item.name.includes(nameFilter)

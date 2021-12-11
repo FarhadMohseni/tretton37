@@ -1,12 +1,12 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { useState, useContext } from "react";
 import Head from "next/head";
+import axios from "axios";
 import styles from "../styles/Home.module.css";
 import FilterByName from "../components/FilterByName";
 import FilterByOffice from "../components/FilterByOffice";
 import CardList from "../components/CardList";
 import Item from "../interfaces/item";
-import axios from "axios";
 
 const Home: NextPage = (props: any) => {
   var items: [Item] = props.data;
@@ -14,6 +14,7 @@ const Home: NextPage = (props: any) => {
 
   const [nameFilter, setNameFilter] = useState("");
   const [officeFilter, setOfficeFilter] = useState("");
+
   return (
     <div className={styles.container}>
       <Head>
@@ -23,7 +24,7 @@ const Home: NextPage = (props: any) => {
       </Head>
       <section className={styles.header}>
         <div className={styles.header_text}>
-          <p>The fellowship of the tretton37</p>
+          <p data-cy="homeText">The fellowship of the tretton37</p>
         </div>
         <div className={styles.header_filter}>
           <FilterByName getFilter={(filter: string) => setNameFilter(filter)} />
@@ -41,6 +42,7 @@ const Home: NextPage = (props: any) => {
     </div>
   );
 };
+
 export const getServerSideProps: GetServerSideProps = async () => {
   const res = await axios.get("https://api.1337co.de/v3/employees", {
     headers: {
@@ -57,4 +59,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
   // Pass data to the page via props
   return { props: { data } };
 };
+
 export default Home;

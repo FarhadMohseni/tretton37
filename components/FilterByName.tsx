@@ -14,6 +14,7 @@ function FilterByName({ getFilter }: Props) {
     <input
       type="text"
       value={text}
+      data-cy="filterByName"
       placeholder="Search employees"
       onChange={(e) => onChange(e.target.value)}
       className={styles.header_filter_employee}
