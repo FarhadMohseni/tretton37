@@ -1,0 +1,10 @@
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.loader p {
+  color: var(--dark-green);
+}

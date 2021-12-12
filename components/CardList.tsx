@@ -4,6 +4,7 @@ import styles from "../styles/CardList.module.css";
 import CardItem from "../components/CardItem";
 import Employee from "../interfaces/employee";
 import ApiHelper from "../helpers/ApiHelper";
+import Loader from "./Loader";
 
 interface Props {
   items: Array<Employee>;
@@ -31,25 +32,21 @@ function CardList({ items, totalCount, nameFilter, officeFilter }: Props) {
     <InfiniteScroll
       dataLength={displayedItems.length}
       next={getMoreItems}
-      hasMore={true}
-      loader={<p> </p>}
+      hasMore={hasMore}
+      loader={<Loader />}
       endMessage={<p> </p>}>
-      <div>
-        <section data-cy="items" className={styles.cards}>
-          {displayedItems
-            .filter((item) =>
-              nameFilter === "" ? item.name : item.name.includes(nameFilter)
-            )
-            .filter((item) =>
-              officeFilter === ""
-                ? item.name
-                : item.office.includes(officeFilter)
-            )
-            .map((item: Employee) => (
-              <CardItem item={item} />
-            ))}
-        </section>
-      </div>
+      <section data-cy="items" className={styles.cards}>
+        {displayedItems
+          .filter((item) =>
+            nameFilter === "" ? item.name : item.name.includes(nameFilter)
+          )
+          .filter((item) =>
+            officeFilter === "" ? item.name : item.office.includes(officeFilter)
+          )
+          .map((item: Employee) => (
+            <CardItem item={item} />
+          ))}
+      </section>
     </InfiniteScroll>
   );
 }
