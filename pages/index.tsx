@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 import FilterByName from "../components/FilterByName";
 import FilterByOffice from "../components/FilterByOffice";
 import CardList from "../components/CardList";
-import Item from "../interfaces/item";
+import Item from "../interfaces/employee";
 
 const Home: NextPage = (props: any) => {
   var items: [Item] = props.data;
@@ -44,7 +44,7 @@ const Home: NextPage = (props: any) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await axios.get("https://api.1337co.de/v3/employees", {
+  const res = await axios.get(`${process.env.BASE_URL}/api/employee`, {
     headers: {
       Authorization: process.env.API_KEY, //the token is a variable which holds the token
     },

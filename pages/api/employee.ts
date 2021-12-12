@@ -9,6 +9,8 @@ type Data = {
 
 async function handler(req: NextApiRequest, res: NextApiResponse<String>) {
   if (req.method == "GET") {
+    if (req.headers.authorization !== process.env.API_KEY)
+      res.status(403).send("Access denied ! Invalid API KEY");
     let { limit } = req.query;
     let users;
     if (limit)
