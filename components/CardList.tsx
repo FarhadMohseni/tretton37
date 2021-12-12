@@ -17,7 +17,7 @@ function CardList({ items, totalCount, nameFilter, officeFilter }: Props) {
   const [displayedItems, setDisplayedItems] = useState(items);
 
   const getMoreItems = async () => {
-    var next = displayedItems.length + 10;
+    var next = displayedItems.length + 20;
 
     let data: Employee[] = await ApiHelper.getEmployees(next);
 

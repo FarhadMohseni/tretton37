@@ -47,7 +47,7 @@ const Home: NextPage = (props: any) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    let employees: Employee[] = await ApiHelper.getEmployees(10);
+    let employees: Employee[] = await ApiHelper.getEmployees(20);
     let totalCount: Number = await ApiHelper.getEmployeesCount();
     if (!employees || !totalCount) {
       return {
