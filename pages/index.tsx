@@ -6,10 +6,10 @@ import styles from "../styles/Home.module.css";
 import FilterByName from "../components/FilterByName";
 import FilterByOffice from "../components/FilterByOffice";
 import CardList from "../components/CardList";
-import Item from "../interfaces/employee";
-
+import ApiHelper from "../helpers/ApiHelper";
+import Employee from "../interfaces/employee";
 const Home: NextPage = (props: any) => {
-  var items: [Item] = props.data;
+  var items: Employee[] = props.data;
   var offices = [...new Set(items.map((item) => item.office))];
 
   const [nameFilter, setNameFilter] = useState("");
@@ -44,18 +44,12 @@ const Home: NextPage = (props: any) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await axios.get(`${process.env.BASE_URL}/api/employee`, {
-    headers: {
-      Authorization: process.env.API_KEY, //the token is a variable which holds the token
-    },
-  });
-  var data = res.data;
+  let data: Employee[] = await ApiHelper.getEmployees(10);
   if (!data) {
     return {
       notFound: true,
     };
   }
-  data = data.filter((i: Item) => i.published);
   // Pass data to the page via props
   return { props: { data } };
 };
