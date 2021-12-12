@@ -9,8 +9,9 @@ import CardList from "../components/CardList";
 import ApiHelper from "../helpers/ApiHelper";
 import Employee from "../interfaces/employee";
 const Home: NextPage = (props: any) => {
-  var items: Employee[] = props.data;
-  var offices = [...new Set(items.map((item) => item.office))];
+  var employees: Employee[] = props.employees;
+  var totalCount: Number = props.totalCount;
+  var offices = [...new Set(employees.map((item) => item.office))];
 
   const [nameFilter, setNameFilter] = useState("");
   const [officeFilter, setOfficeFilter] = useState("");
@@ -37,21 +38,29 @@ const Home: NextPage = (props: any) => {
       <CardList
         nameFilter={nameFilter}
         officeFilter={officeFilter}
-        items={items}
+        items={employees}
+        totalCount={totalCount}
       />
     </div>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  let data: Employee[] = await ApiHelper.getEmployees(10);
-  if (!data) {
+  try {
+    let employees: Employee[] = await ApiHelper.getEmployees(10);
+    let totalCount: Number = await ApiHelper.getEmployeesCount();
+    if (!employees || !totalCount) {
+      return {
+        notFound: true,
+      };
+    }
+    // Pass data to the page via props
+    return { props: { employees, totalCount } };
+  } catch (err) {
     return {
       notFound: true,
     };
   }
-  // Pass data to the page via props
-  return { props: { data } };
 };
 
 export default Home;

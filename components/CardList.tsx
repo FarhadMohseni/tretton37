@@ -3,31 +3,35 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import styles from "../styles/CardList.module.css";
 import CardItem from "../components/CardItem";
 import Employee from "../interfaces/employee";
+import ApiHelper from "../helpers/ApiHelper";
 
 interface Props {
   items: Array<Employee>;
+  totalCount: Number;
   nameFilter: string;
   officeFilter: string;
 }
 
-function CardList({ items, nameFilter, officeFilter }: Props) {
-  const [displayedItems, setDisplayedItems] = useState(items.slice(0, 10));
+function CardList({ items, totalCount, nameFilter, officeFilter }: Props) {
+  const [displayedItems, setDisplayedItems] = useState(items);
 
-  const getMoreItems = () => {
-    var newItems = items.slice(
-      displayedItems.length,
-      displayedItems.length + 10
-    );
+  const getMoreItems = async () => {
+    var next = displayedItems.length + 10;
+
+    let data: Employee[] = await ApiHelper.getEmployees(next);
+
+    var newItems = data.slice(displayedItems.length, next);
+
     setDisplayedItems((items) => [...items, ...newItems]);
   };
 
-  const hasMore = displayedItems.length < items.length;
+  const hasMore = displayedItems.length < totalCount;
 
   return (
     <InfiniteScroll
       dataLength={displayedItems.length}
       next={getMoreItems}
-      hasMore={hasMore}
+      hasMore={true}
       loader={<p> </p>}
       endMessage={<p> </p>}>
       <div>

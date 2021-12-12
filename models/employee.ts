@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import Employee from "../interfaces/employee";
-
+import mongoose from "mongoose";
 const schema = new Schema<Employee>({
   name: { type: String, required: true },
   office: { type: String, required: true },
@@ -10,5 +10,6 @@ const schema = new Schema<Employee>({
   twitter: String,
   published: Boolean,
 });
-
-export default model<Employee>("EmployeeModel", schema, "employees");
+var Employee =
+  mongoose.models.Employee || model<Employee>("Employee", schema, "employees");
+export default Employee;
