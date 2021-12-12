@@ -2,6 +2,8 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       API_KEY: string;
+      MONGODB_URL: string;
+      BASE_URL: string;
     }
   }
 }

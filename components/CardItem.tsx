@@ -6,10 +6,10 @@ config.autoAddCss = false;
 import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons/faTwitterSquare";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 import { faGithubSquare } from "@fortawesome/free-brands-svg-icons/faGithubSquare";
-import Item from "../interfaces/item";
+import Employee from "../interfaces/employee";
 import styles from "../styles/CardItem.module.css";
 interface Props {
-  item: Item;
+  item: Employee;
 }
 
 function CardItem({ item }: Props) {

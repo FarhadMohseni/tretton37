@@ -1,4 +1,4 @@
-export default interface Item {
+export default interface Employee {
   name: string;
   office: string;
   imagePortraitUrl: string;
