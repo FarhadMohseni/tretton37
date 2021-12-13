@@ -18,7 +18,7 @@ const Home: NextPage = (props: any) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Meet us</title>
         <meta name="description" content="Fellowship of the tretton37" />
         <link rel="icon" href="/favicon.png" />
       </Head>
