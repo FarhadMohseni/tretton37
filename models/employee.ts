@@ -12,4 +12,5 @@ const schema = new Schema<Employee>({
 });
 var Employee =
   mongoose.models.Employee || model<Employee>("Employee", schema, "employees");
+
 export default Employee;

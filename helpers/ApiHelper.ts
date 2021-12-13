@@ -19,6 +19,7 @@ export default class ApiHelper {
 
     return data;
   }
+
   public static async getEmployeesCount(): Promise<Number> {
     var baseUrl = process.env.BASE_URL ? process.env.BASE_URL : "";
 
