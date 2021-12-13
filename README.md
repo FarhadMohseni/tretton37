@@ -2,7 +2,7 @@
 
 This is another version of [tretton37's meet us page](https://tretton37.com/meet) with React and NextJS for SSR
 
-As an extra, I made my own API and stored the data on a MongoDB database and the code available on the [API branch](https://github.com/FarhadMohseni/tretton37/tree/api) _(It has a lot to improve)_
+As an extra, I made my own API and stored the data on a MongoDB database and the code is available on the [API branch](https://github.com/FarhadMohseni/tretton37/tree/api) _(It has a lot to improve)_
 
 You can see the project live on :
 
@@ -18,7 +18,7 @@ And here is the deployed version with my own API:
 
   _I think accessibility matters a lot, It's important to make sure most of the people with all sorts of conditions can use your website._
 
-  _In the design process, I tried to use high-contrast colors and I double-checked that using [http://www.color-blindness.com/coblis-color-blindness-simulator/](Coblis color blindness simulator)_
+  _In the design process, I tried to use high-contrast colors and I double-checked that using [Coblis color blindness simulator](http://www.color-blindness.com/coblis-color-blindness-simulator/)_
 
 - **Responsive design, works on
   mobile and tablets**
