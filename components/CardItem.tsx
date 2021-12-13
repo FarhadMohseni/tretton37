@@ -51,6 +51,8 @@ function CardItem({ item }: Props) {
       <style>{dom.css()}</style>
       <div className={styles.card}>
         <Image
+          alt={item.name}
+          layout="fill"
           src={item.imagePortraitUrl ? item.imagePortraitUrl : "fallBack.png"}
           className="card_image"
         />
