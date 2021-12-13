@@ -13,13 +13,13 @@ context("Home page", () => {
   it("Should render the initial 10 entries", () => {
     cy.get("[data-cy=items]")
       .find("[data-cy=dataItem]")
-      .should("have.length", 10);
+      .should("have.length", 20);
   });
   it("Should load more data when scrolling to the bottom", () => {
     cy.scrollTo("bottom");
     cy.get("[data-cy=items]")
       .find("[data-cy=dataItem]")
-      .should("have.length", 20);
+      .should("have.length", 40);
   });
 });
 

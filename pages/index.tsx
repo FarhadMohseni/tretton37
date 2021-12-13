@@ -1,7 +1,6 @@
 import type { GetServerSideProps, NextPage } from "next";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import Head from "next/head";
-import axios from "axios";
 import styles from "../styles/Home.module.css";
 import FilterByName from "../components/FilterByName";
 import FilterByOffice from "../components/FilterByOffice";
@@ -23,6 +22,7 @@ const Home: NextPage = (props: any) => {
         <meta name="description" content="Fellowship of the tretton37" />
         <link rel="icon" href="/favicon.png" />
       </Head>
+
       <section className={styles.header}>
         <div className={styles.header_text}>
           <p data-cy="homeText">The fellowship of the tretton37</p>
@@ -35,6 +35,7 @@ const Home: NextPage = (props: any) => {
           />
         </div>
       </section>
+
       <CardList
         nameFilter={nameFilter}
         officeFilter={officeFilter}
@@ -48,13 +49,17 @@ const Home: NextPage = (props: any) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     let employees: Employee[] = await ApiHelper.getEmployees(20);
+
     let totalCount: Number = await ApiHelper.getEmployeesCount();
+
     if (!employees || !totalCount) {
       return {
         notFound: true,
       };
     }
+
     // Pass data to the page via props
+
     return { props: { employees, totalCount } };
   } catch (err) {
     return {

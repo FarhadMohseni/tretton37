@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import Employee from "../../interfaces/employee";
 import connectDB from "../../middlewares/mongodb";
 import EmployeeModel from "../../models/employee";
 

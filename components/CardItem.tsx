@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
@@ -14,7 +14,10 @@ interface Props {
 
 function CardItem({ item }: Props) {
   let twitter = item.twitter ? (
-    <a target="_blank" href={`https://twitter.com/${item.twitter}`}>
+    <a
+      target="_blank"
+      rel="noreferrer"
+      href={`https://twitter.com/${item.twitter}`}>
       <FontAwesomeIcon
         icon={faTwitterSquare}
         className={styles.card_overlay_icon}
@@ -23,13 +26,19 @@ function CardItem({ item }: Props) {
   ) : null;
 
   let linkedIn = item.linkedIn ? (
-    <a target="_blank" href={`https://linkedIn.com${item.linkedIn}`}>
+    <a
+      target="_blank"
+      rel="noreferrer"
+      href={`https://linkedIn.com${item.linkedIn}`}>
       <FontAwesomeIcon icon={faLinkedin} className={styles.card_overlay_icon} />
     </a>
   ) : null;
 
   let github = item.github ? (
-    <a target="_blank" href={`https://github.com/${item.github}`}>
+    <a
+      target="_blank"
+      rel="noreferrer"
+      href={`https://github.com/${item.github}`}>
       <FontAwesomeIcon
         icon={faGithubSquare}
         className={styles.card_overlay_icon}
@@ -41,7 +50,7 @@ function CardItem({ item }: Props) {
     <div data-cy="dataItem" className={styles.item}>
       <style>{dom.css()}</style>
       <div className={styles.card}>
-        <img
+        <Image
           src={item.imagePortraitUrl ? item.imagePortraitUrl : "fallBack.png"}
           className="card_image"
         />
