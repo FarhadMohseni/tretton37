@@ -6,10 +6,10 @@ import styles from "../styles/Home.module.css";
 import FilterByName from "../components/FilterByName";
 import FilterByOffice from "../components/FilterByOffice";
 import CardList from "../components/CardList";
-import Item from "../interfaces/item";
-
+import Employee from "../interfaces/employee";
+import ApiHelper from "../helpers/ApiHelper";
 const Home: NextPage = (props: any) => {
-  var items: [Item] = props.data;
+  var items: [Employee] = props.data;
   var offices = [...new Set(items.map((item) => item.office))];
 
   const [nameFilter, setNameFilter] = useState("");
@@ -22,10 +22,12 @@ const Home: NextPage = (props: any) => {
         <meta name="description" content="Fellowship of the tretton37" />
         <link rel="icon" href="/favicon.png" />
       </Head>
+
       <section className={styles.header}>
         <div className={styles.header_text}>
           <p data-cy="homeText">The fellowship of the tretton37</p>
         </div>
+
         <div className={styles.header_filter}>
           <FilterByName getFilter={(filter: string) => setNameFilter(filter)} />
           <FilterByOffice
@@ -34,6 +36,7 @@ const Home: NextPage = (props: any) => {
           />
         </div>
       </section>
+
       <CardList
         nameFilter={nameFilter}
         officeFilter={officeFilter}
@@ -44,18 +47,13 @@ const Home: NextPage = (props: any) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await axios.get("https://api.1337co.de/v3/employees", {
-    headers: {
-      Authorization: process.env.API_KEY, //the token is a variable which holds the token
-    },
-  });
-  var data = res.data;
+  var data = await ApiHelper.getEmployees();
   if (!data) {
     return {
       notFound: true,
     };
   }
-  data = data.filter((i: Item) => i.published);
+  data = data.filter((i: Employee) => i.published);
   // Pass data to the page via props
   return { props: { data } };
 };

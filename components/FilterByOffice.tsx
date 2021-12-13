@@ -18,8 +18,10 @@ function FilterByOffice({ offices, getFilter }: Props) {
         onChange={(e) => onChange(e.currentTarget.value)}
         className={styles.header_filter_office_select}>
         <option value="">All</option>
-        {offices.map((item) => (
-          <option value={item}>{item}</option>
+        {offices.map((item, i) => (
+          <option key={i} value={item}>
+            {item}
+          </option>
         ))}
       </select>
     </div>

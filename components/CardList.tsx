@@ -2,10 +2,10 @@ import React, { useState, useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import styles from "../styles/CardList.module.css";
 import CardItem from "../components/CardItem";
-import Item from "../interfaces/item";
+import Employee from "../interfaces/employee";
 
 interface Props {
-  items: Array<Item>;
+  items: Array<Employee>;
   nameFilter: string;
   officeFilter: string;
 }
@@ -41,8 +41,8 @@ function CardList({ items, nameFilter, officeFilter }: Props) {
                 ? item.name
                 : item.office.includes(officeFilter)
             )
-            .map((item: Item) => (
-              <CardItem item={item} />
+            .map((item: Employee) => (
+              <CardItem key={item.name} item={item} />
             ))}
         </section>
       </div>
