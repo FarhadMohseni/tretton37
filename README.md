@@ -1,34 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# About
 
-## Getting Started
+This is another version of [tretton37's meet us page](https://tretton37.com/meet) with React and NextJS for SSR
 
-First, run the development server:
+As an extra, I made my own API and stored the data on a MongoDB database and the code available on the [API branch](https://github.com/FarhadMohseni/tretton37/tree/api) _(It has a lot to improve)_
+
+You can see the project live on :
+
+[https://tretton37-rho.vercel.app/](https://tretton37-rho.vercel.app/)
+
+And here is the deployed version with my own API:
+
+[https://tretton37api.vercel.app/](https://tretton37api.vercel.app/)
+
+# Stories
+
+- **Support for color blindness**
+
+  _I think accessibility matters a lot, It's important to make sure most of the people with all sorts of conditions can use your website._
+
+  _In the design process, I tried to use high-contrast colors and I double-checked that using [http://www.color-blindness.com/coblis-color-blindness-simulator/](Coblis color blindness simulator)_
+
+- **Responsive design, works on
+  mobile and tablets**
+
+  _Responsiveness became a standard and personally, I can't ship a front-end that is not responsive_
+
+- **Use modern CSS throughout
+  the application**
+
+  _I used CSS-grid, clamp, variables, clip-path, and appearance property_
+
+- **Filter by name and office**
+
+  _We have a lot of records and In my opinion, It was necessary to have filters for better user experince_
+
+- **Only render a set of profiles
+  using either infinity scroll,
+  pagination or a load more
+  button**
+
+  _Again, We have a lot of records and it's more efficient to load them in chunks, I used infinity scroll for that_
+
+- **Available on a free public URL**
+
+  _I wanted this to be easily presentable, So I deployed that to Vercel_
+
+- **Use Typescript**
+
+  _Along with the great type safety features that it brings, I can validate my prop types without using an external library_
+
+- **Integration tests of
+  components**
+
+  _Testing is a way to have cleaner code and ensure reliability and quality, Also it makes maintenance and deployment much more efficient (ex: in CI/CD pipeline)_
+
+## Running the software
+
+Installing the packages :
+
+```bash
+yarn install
+#or
+npm install
+```
+
+Running the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The project will be accessible at [http://localhost:3000]() after running this command
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Run this in order to run the integration test by cypress:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+npm run cypress:open
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Contributing
 
-## Learn More
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-To learn more about Next.js, take a look at the following resources:
+Please make sure to update tests as appropriate.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[MIT](https://choosealicense.com/licenses/mit/)
