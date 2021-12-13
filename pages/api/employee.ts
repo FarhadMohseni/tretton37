@@ -2,14 +2,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import connectDB from "../../middlewares/mongodb";
 import EmployeeModel from "../../models/employee";
-type Data = {
-  limit?: string;
-};
 
 async function handler(req: NextApiRequest, res: NextApiResponse<String>) {
   if (req.method == "GET") {
     let { limit } = req.query;
+
     let users;
+
     if (limit)
       users = await EmployeeModel.find().limit(parseInt(limit.toString()));
     else users = await EmployeeModel.find();

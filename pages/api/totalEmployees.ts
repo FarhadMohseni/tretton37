@@ -6,10 +6,12 @@ import EmployeeModel from "../../models/employee";
 
 async function handler(req: NextApiRequest, res: NextApiResponse<String>) {
   if (req.method == "GET") {
-    let count = await EmployeeModel.count();
+    let count = await EmployeeModel.find({ published: true }).count();
+
     var json = {
       totalEmployees: count,
     };
+
     res.status(200).send(JSON.stringify(json));
   }
 }

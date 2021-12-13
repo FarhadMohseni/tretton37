@@ -7,4 +7,5 @@
 
 .loader p {
   color: var(--dark-green);
+  font-size: clamp(1rem, 24px, 2rem);
 }

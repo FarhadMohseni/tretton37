@@ -3,7 +3,7 @@ import styles from "../styles/Loader.module.css";
 function Loader() {
   return (
     <div className={styles.loader}>
-      <p>Loading...</p>
+      <p className="Loader">Loading...</p>
     </div>
   );
 }
